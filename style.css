@@ -208,17 +208,7 @@ nav {
     background: white;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     z-index: 22;
-
-
     
-}
-
-label.title {
-    margin: auto;
-    font-size: 45px;
-    line-height: 80px;
-     padding: 0 30px; 
-    font-weight: 700;
 }
 
 #logo{
@@ -226,18 +216,11 @@ label.title {
 }
 
 #logo img{
-    height: 72px;
-    margin: 3px 6px;
-    border-radius: 50px;
+    width: 250px;
+    height: 75px;
     
 }
 
-#logo img:hover{
-    
-    height: 72px;
-    border-radius: 50px;
-    box-shadow: 8px 8px 10px grey , -8px -8px 10px  rgb(116, 96, 96);
-}
 
 nav ul {
     float: right;
