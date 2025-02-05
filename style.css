@@ -1,83 +1,155 @@
-@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&display=swap");
-
-/* Base */
-:root {
-    --clr-primary: deeppink;
-    --clr-secondary: #272d36;
-}
-
-*,
-*::after,
-*::before {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-    font-family: "Josefin Sans", sans-serif;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    background: white;
-    color: var(--clr-secondary);
-    overflow-x: hidden;
-}
-
-.section {
-    width: 100%;
-    padding: 40px 0;
-}
-
-.flex {
+/* Navbar Styles */
+nav {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
+    padding: 10px 20px;
+    background: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
 }
 
-.container {
-    /* 1140px */
-    max-width: 120rem;
-    padding: 0 3.2rem;
-    margin: 28px auto;
+.logo img {
+    height: 50px;
+    /* padding: 7px 10px; */
 }
 
-.grid {
-    display: grid;
-    column-gap: 6.4rem;
-    row-gap: 9.6rem;
-}
-
-.grid--3-cols {
-    grid-template-columns: repeat(3, 1fr);
-}
-
-.margin-right-md {
-    margin-bottom: 4.8rem !important;
-}
-
-strong {
-    font-weight: 500;
-}
-
-/***************************/
-/* MEALS SECTION */
-/***************************/
-.section-meals {
-    height: 700px;
-}
-
-.section-meals .txt{
+.nav-links {
     display: flex;
-    justify-content: center;
-    padding-top: 30px;
+    list-style: none;
+    margin-right: 50px;
+}
+
+.nav-links li {
+    margin-left: 20px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+    transition: color 0.3s;
+    padding: 7px 12px;
+
+}
+
+.nav-links a:hover {
+    color: deeppink;
+}
+
+.menu-icon {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    .logo {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 60px;
+        right: -100%;
+        flex-direction: column;
+        background: white;
+        width: 100%;
+        height: calc(100vh - 60px);
+        transition: right 0.3s ease-in-out;
+        box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    .nav-links li {
+        margin: 15px 0;
+        text-align: center;
+    }
+
+    .menu-icon {
+        display: block;
+    }
+}
+
+/* Hero Section Styles */
+#hero-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 100px 20px;
+    background: #f9f9f9;
+}
+
+#hero-section .text {
+    max-width: 50%;
+}
+
+#hero-section .text h1 {
+    font-size: 54px;
+    color: #333;
+}
+
+#hero-section .text p {
+    font-size: 24px;
+    color: #666;
+    margin: 20px 0;
+}
+
+#hero-section .text .btn {
+    background: deeppink;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 18px;
+    transition: background 0.3s;
+}
+
+#hero-section .text .btn:hover {
+    background: #ff1493;
+}
+
+#hero-section .visual img {
+    max-width: 100%;
+    display: block;
+    border-radius: 50%;
+    height: auto;
+    width: 600px;
+}
+
+/* Section Meals Styles */
+.section-meals {
+    padding: 50px 20px;
+    background: #fff;
+}
+
+.section-meals .txt h1 {
+    text-align: center;
+    font-size: 36px;
+    color: #333;
+    margin-bottom: 40px;
+}
+
+.container.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
 }
 
 .meal {
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    background: #f9f9f9;
     border-radius: 11px;
     overflow: hidden;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     transition: all 0.4s;
 }
 
@@ -86,14 +158,18 @@ strong {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
+.meal-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
 .meal-content {
     padding: 24px;
 }
 
 .meal-tags {
-    margin-bottom: 1.2rem;
-    display: flex;
-    gap: 0.4rem;
+    margin-bottom: 10px;
 }
 
 .tag {
@@ -108,15 +184,15 @@ strong {
 }
 
 .tag--vegetarian {
-    background-color: #51cf66;
+    background: #51cf66;;
 }
 
 .tag--vegan {
-    background-color: #94d82d;
+    background: #94d82d;
 }
 
 .tag--paleo {
-    background-color: #ffd43b;
+    background: #ffd43b;
 }
 
 .meal-title {
@@ -145,289 +221,246 @@ strong {
     color: #e67e22;
 }
 
-.meal-img {
-    width: 100%;
-    height: 224.15px;
-    object-fit: cover;
-}
-
-
-.container-menu {
-    padding: 25px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    column-gap: 56px;
-    flex-direction: column;
-}
-
-.primary {
-    font-size: 64px;
-    font-weight: 700;
-    margin-bottom: 20px;
-}
-
-.secondary {
-    font-size: 44px;
-    font-weight: 700;
-    margin-bottom: 20px;
-}
-
-.tertiary {
-    font-size: 24px;
-    font-weight: 400;
-    margin-bottom: 20px;
-}
-
-.btn {
-    padding: 14px 20px;
-    background: #e51f89;
-    border-radius: 4px;
-    color: #fff;
-    text-decoration: none;
-    font-size: 22px;
-    display: inline-block;
-    margin: 20px 0;
-    transition: all 0.4s ease-in-out;
-}
-
-.btn:hover{
-    transform: rotate(5deg);
-}
-
-/* End Base */
-
-/* Menu */
-nav {
-
-    padding: 0 33px;
-    height: 80px;
-    width: 100%;
-    position: fixed;
-    top: 0px;
-    background: white;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-    z-index: 22;
-    
-}
-
-#logo{
-    margin: 2px 3px;
-}
-
-#logo img{
-    width: 250px;
-    height: 75px;
-    
-}
-
-
-nav ul {
-    float: right;
-    margin-right: 20px;
-}
-
-nav ul li {
-    display: inline-block;
-    line-height: 80px;
-    margin: 0 5px;
-}
-
-nav ul li a {
-    font-size: 18px;
-    padding: 7px 13px;
-    text-decoration: none;
-    color: var(--clr-secondary);
-}
-
-.menu a.active,
-.menu a:hover {
-    border-bottom: 2px solid var(--clr-primary);
-    transition: 0.3s;
-}
-
-.checkbtn {
-    font-size: 30px;
-    color: #fff;
-    float: right;
-    line-height: 80px;
-    margin-right: 40px;
-    cursor: pointer;
-    display: none;
-}
-
-#check {
-    display: none;
-}
-
-/* End Menu */
-
-/* Hero Section */
-#hero-section {
-    background: whitesmoke;
-    padding: 132px 33px;
-    display: flex;
-    justify-content: center;
-    align-items: center !important;
-}
-
-.text,
-.visual {
-    width: 50%;
-}
-
-.text {
-    margin: 0 20px;
-}
-
-.visual img {
-    display: block;
-    border-radius: 50%;
-    height: 500px;
-    width: 500px;
-}
-
-.visual img:hover {
-    height: 500px;
-    width: 500px;
-    border-radius: 50%;
-    box-shadow: 8px 8px 10px grey , -8px -8px 10px  rgb(116, 96, 96);
-}
-
-#hero-section .text {
-    margin-left: 30px;
-}
-
-#hero-section .visual img {
-    margin-left: auto;
-}
-
-/* End Hero Section */
-
-/* How It Works */
+/* How It Works Styles */
 #how-it-works {
-    margin: 0 auto;
+    padding: 50px 20px;
+    background: #f9f9f9;
+}
+
+#how-it-works .txt h1 {
     text-align: center;
-    background-color: whitesmoke;
+    font-size: 36px;
+    color: #333;
+    margin-bottom: 40px;
+}
+
+.container.flex {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
 .box {
     background: white;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    padding: 25px 5px;
-    margin: 0 10px;
-    border-radius: 8px;
-    font-size: 18px;
-    transition: 0.3s ease;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    flex: 1 1 250px;
+    transition: 0.5s ease;
     cursor: pointer;
-}
-
-.box ion-icon {
-    font-size: 35px;
-    margin: 15px 0;
 }
 
 .box:hover {
     transform: rotate(5deg);
 }
 
+.box.active {
+    background: rgb(252, 104, 173);
+    color: white;
+}
 
-/* End How It Works */
+.box h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
 
-/* About */
-#about .visual img,
-#app .visual img {
+.box ion-icon {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.box p {
+    font-size: 18px;
+    color: black;
+}
+
+/* About Section Styles */
+#about {
+    padding: 50px 20px;
+    background: #fff;
+}
+
+#about .container.flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+}
+
+#about .visual img {
+    display: block;
+    border-radius: 50%;
+    height: 500px;
+    width: 500px; 
     margin-right: auto;
 }
 
-/* End About */
+#about .visual img:hover {
+    height: 500px;
+    width: 500px;
+    border-radius: 50%;
+    box-shadow: 8px 8px 10px grey , -8px -8px 10px  rgb(116, 96, 96);
+}
 
-/* Restaurant Menu */
+#about .text {
+    max-width: 50%;
+}
 
-#menu{
-    background-color: whitesmoke;
+#about .text .secondary {
+    font-size: 44px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+#about .text h2 {
+    font-size: 48px;
+    color: #333;
+    margin: 10px 0;
+}
+
+#about .text h3 {
+    font-size: 24px;
+    color: black;
+    margin: 10px 0
+}
+
+#about .text p {
+    font-size: 18px;
+    color: black;
+    margin: 20px 0;
+}
+
+#about .text .btn {
+    background: deeppink;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background 0.3s;
+    border-radius: 5px;
+}
+
+#about .text .btn:hover {
+    background: #ff1493;
+}
+
+/* Restaurant Menu Styles */
+#menu {
+    padding: 50px 20px;
+    background: #f9f9f9;
+}
+
+.container-menu {
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .category {
+    display: flex;
+    justify-content: center;
     list-style: none;
-    text-align: center;
-    margin: 20px 0 40px 0;
+    padding: 0;
+    margin-bottom: 40px;
 }
 
 .category li {
-    display: inline-block;
-    margin: 0 15px;
-    font-size: 20px;
-    font-weight: 500;
+    margin: 0 10px;
+    padding: 10px 20px;
     cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s;
 }
 
 .category li.active {
-    color: deeppink;
+    background: deeppink;
+    color: white;
 }
 
 .restaurant-menu {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 6px;
-    row-gap: 60px;
-    column-gap: 70px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(333px, 1fr));
+    gap: 20px;
 }
 
 .menu-item {
-    width: 360px;
-    margin: 0 auto;
-    border-radius: 6px;
+    background: white;
+    border-radius: 10px;
     overflow: hidden;
-    background-color: white;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .menu-item img {
     width: 100%;
-    height : 60%;
+    height: 200px;
     object-fit: cover;
-    
 }
 
-.order {
+.menu-item .title {
+    font-size: 20px;
+    color: #333;
+    margin: 10px;
+}
+
+.menu-item .location {
+    font-size: 14px;
+    color: #666;
+    margin: 10px;
+}
+
+.menu-item .order {
+    display: flex;
     justify-content: space-between;
+    align-items: center;
+    padding: 10px;
 }
 
-.btn-menu {
-    padding: 6px 10px;
-    font-size: 16px;
-    text-align: center;
+.menu-item .price {
+    font-size: 18px;
+    color: #333;
+}
+
+.menu-item .btn-menu {
+    background: deeppink;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background 0.3s;
+}
+
+.menu-item .btn-menu:hover {
+    background: #ff1493;
+}
+
+/* FAQ Section Styles */
+#faq {
+    padding: 50px 20px;
     background: #fff;
-    border: 1px solid deeppink;
-    color: deeppink;
 }
 
-.title {
-    font-size: 18px;
-    font-weight: 300;
-    margin: 8px 0;
-}
-
-.location {
-    font-size: 18px;
-    font-weight: 500;
-}
-
-/* End Restaurant Menu */
-
-/* FAQ */
-#faq .secondary {
+#faq h2 {
     text-align: center;
+    font-size: 36px;
+    color: #333;
+    margin-bottom: 40px;
 }
 
 .faq {
-    width: 60%;
-    margin: 50px auto 20px auto;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
-summary {
+.faq details {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.faq summary {
     padding: 1em;
     border: 1px solid #b2b2b2;
     margin-bottom: 1em;
@@ -437,28 +470,51 @@ summary {
     font-weight: 600;
 }
 
-details[open] summary~* {
-    animation: open 1s ease-in-out;
+
+.faq .content {
+    font-size: 16px;
+    color: #666;
+    padding: 10px 0;
 }
 
-@keyframes open {
-    from {
-        opacity: 1;
-        margin-top: -10px;
-    }
-
-    top {
-        opacity: 1;
-        margin-top: 0;
-    }
-}
-
-/* End FAQ */
-
-/* App */
+/* App Section Styles */
 #app {
-    text-align: center;
-    background-color: whitesmoke;
+    padding: 50px 20px;
+    background: #f9f9f9;
+}
+
+#app .container.flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+}
+
+#app .app-photo img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+#app .text {
+    max-width: 50%;
+}
+
+#app .text h2 {
+    font-size: 44px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+#app .text p {
+    font-size: 16px;
+    margin-top: 8px;
+    margin-bottom: 10px;
+}
+
+.download {
+    display: flex;
+    gap: 20px;
 }
 
 .app-store {
@@ -470,67 +526,79 @@ details[open] summary~* {
     align-items: center;
     justify-content: space-between;
     font-size: 12px;
-    color: #fff;
+    color: #fff; 
     cursor: pointer;
+}
+
+.app-store:hover {
+    background: #555;
+}
+
+.app-store ion-icon {
+    font-size: 24px;
+    margin-right: 10px;
 }
 
 .app-store p {
     margin-top: 8px;
+    color: white;
 }
 
 .app-store span {
-    font-size: 16px;
+    font-size: 18px;
     line-height: 25px;
+    color: white;
 }
 
-.app-store ion-icon {
-    font-size: 30px;
-    margin-right: 10px;
-}
-
-.download {
-    margin: 30px 0;
-}
-
-/* End App */
-
-/* Footer */
+/* Footer Styles */
 .footer {
-    background: white;
-    color: black;
-    padding: 30px 0;
+    padding: 50px 20px;
+    background: #333;
+    color: white;
 }
 
-.footer .container {
+.footer .container.flex {
+    display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.footer-about,
+.footer-category,
+.quick-links,
+.get-in-touch {
+    flex: 1 1 250px;
 }
 
 .footer h2 {
-    font-size: 22px;
-    margin-bottom: 10px;
-    color: deeppink;
+    font-size: 24px;
+    margin-bottom: 20px;
 }
 
 .footer ul {
     list-style: none;
-    line-height: 30px;
-    font-size: 16px;
+    padding: 0;
 }
 
 .footer ul li {
-    cursor: pointer;
+    margin-bottom: 10px;
 }
 
-.footer-about {
-    width: 35%;
+.footer ul li a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer ul li a:hover {
+    color: deeppink;
 }
 
 .copyright {
     text-align: center;
-    padding: 20px 0;
-    margin-top: 30px;
-    border-top: 1px solid #b2b2b2;
+    margin-top: 40px;
+    font-size: 14px;
+    color: #ccc;
 }
 
-/* End Footer */
